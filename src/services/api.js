@@ -3,10 +3,16 @@ import axios from "axios";
 const BASE_URL = "http://localhost:8080/api";
 
 export const analyzeStock = async (symbol) => {
-    const response = await axios.get(`${BASE_URL}/analyze?symbol=${symbol}`);
-    console.log(response.data);
-    console.log(symbol);
-    
-    
-    return response.data;
+    const res = await fetch(`http://localhost:8080/api/analyze?symbol=${symbol}`);
+    return await res.json();
+};
+
+export const getAlerts = async () => {
+    const res = await fetch(`http://localhost:8080/api/alerts`);
+    return await res.json();
+};
+
+export const getChartData = async (symbol) => {
+  const res = await fetch(`http://localhost:8080/api/chart?symbol=${symbol}`);
+  return await res.json();
 };
